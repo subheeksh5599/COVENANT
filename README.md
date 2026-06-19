@@ -4,6 +4,22 @@
 
 ---
 
+## What It Does — In Plain English
+
+A company has sensitive documents — financials, contracts, ownership details.
+
+They want an investor to analyze them. But they don't trust the investor (or an AI model) to see everything.
+
+Covenant lets the investor run AI analysis on those documents **without the investor or the AI ever seeing the raw data.**
+
+The documents go into a secure hardware vault. The AI runs inside that vault. It comes out with a report — "this company is worth $42M, compliance is clean, recommendation: strong buy." But it never shows the cap table. Never shows the P&L. Never shows a single customer name.
+
+The investor gets the answer. Not the exposure.
+
+And a third party can cryptographically verify that the analysis actually happened, without seeing what was analyzed.
+
+---
+
 ## What This Replaces
 
 ```
