@@ -1,6 +1,6 @@
 # COVENANT
 
-Confidential multi-agent due diligence on Terminal 3.
+> TEE-secured data rooms where AI agents with verifiable identity analyze sensitive documents without raw data ever leaving hardware enclaves — built on Terminal 3.
 
 Covenant is a protocol for TEE-secured data rooms where AI agents with verifiable `did:t3n` identities analyze sensitive corporate documents without raw data ever leaving hardware enclaves.
 

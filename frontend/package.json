@@ -1,5 +1,6 @@
 {
   "name": "covenant",
+  "description": "Confidential multi-agent due diligence on Terminal 3 — TEE-secured data rooms with verifiable agent identity",
   "version": "1.0.0",
   "private": true,
   "scripts": {
