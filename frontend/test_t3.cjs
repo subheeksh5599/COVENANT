@@ -1,0 +1,22 @@
+const sdk = require('@terminal3/t3n-sdk');
+(async () => {
+sdk.setEnvironment('testnet');
+const PK = '0x1bd2b813c03fbef21d806a1288073b97381f2f844206328cc32e198b492afef7';
+const addr = sdk.eth_get_address(PK);
+console.log('[0]', addr);
+const wasm = await sdk.loadWasmComponent();
+console.log('[1] WASM loaded');
+const client = new sdk.T3nClient({ wasmComponent: wasm, handlers: { EthSign: sdk.metamask_sign(addr, undefined, PK) } });
+console.log('[2] Client created');
+await client.handshake();
+console.log('[3] Handshake OK');
+const auth = await client.authenticate(sdk.createEthAuthInput(addr));
+console.log('[4] DID:', String(auth));
+const usage = await client.getUsage();
+console.log('[5] Balance:', usage.balance);
+const didHex = sdk.tenantDidHex(String(auth));
+const tenant = new sdk.TenantClient({ t3n: client, tenantDid: didHex, baseUrl: sdk.getNodeUrl() });
+const info = await tenant.tenant.me();
+console.log('[6] Tenant:', info.tenant, info.status);
+console.log('\nCONNECTED');
+})().catch(e => console.error('FAILED:', e.message));

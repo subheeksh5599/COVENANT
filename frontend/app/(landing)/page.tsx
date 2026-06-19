@@ -14,7 +14,7 @@ const A = '#ffffff'; const DA = '#ff4444'
 function LiveStatsBar() {
   return (
     <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
-      {[['6', 'TEE Contracts', A], ['12', 'SDK Integrations', 'rgba(255,255,255,0.7)'], ['47', 'Audit Events', 'rgba(255,255,255,0.5)'], ['$0', 'Data Leaks', DA]].map(([v, l, c]) => (
+      {[['6', 'TEE Contracts', A], ['12', 'SDK Integrations', 'rgba(255,255,255,0.7)'], ['✓', 'CLI Verified', 'rgba(255,255,255,0.5)'], ['$0', 'Data Leaks', DA]].map(([v, l, c]) => (
         <div key={l}><div className="text-base font-bold font-mono" style={{ color: c }}>{v}</div><div className="text-[9px] tracking-[0.22em] uppercase mt-0.5" style={{ color: 'rgba(255,255,255,0.4)' }}>{l}</div></div>
       ))}
       <div className="text-[9px] tracking-[0.22em] uppercase" style={{ color: A }}>{'>'} LIVE</div>

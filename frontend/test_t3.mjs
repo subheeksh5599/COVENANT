@@ -1,0 +1,22 @@
+import { T3nClient, TenantClient, loadWasmComponent, setEnvironment, createEthAuthInput, eth_get_address, metamask_sign, tenantDidHex, getNodeUrl } from '@terminal3/t3n-sdk'
+
+setEnvironment('testnet')
+const PK = '0x1bd2b813c03fbef21d806a1288073b97381f2f844206328cc32e198b492afef7'
+const addr = eth_get_address(PK)
+console.log('[0] Address:', addr)
+const wasm = await loadWasmComponent()
+console.log('[1] WASM loaded')
+const client = new T3nClient({ wasmComponent: wasm, handlers: { EthSign: metamask_sign(addr, undefined, PK) } })
+console.log('[2] Client created')
+await client.handshake()
+console.log('[3] Handshake OK')
+const auth = await client.authenticate(createEthAuthInput(addr))
+console.log('[4] DID:', String(auth))
+const usage = await client.getUsage()
+console.log('[5] Balance:', usage.balance)
+let didHex = tenantDidHex(String(auth))
+let baseUrl = getNodeUrl()
+let tenant = new TenantClient({ t3n: client, tenantDid: didHex, baseUrl })
+let info = await tenant.tenant.me()
+console.log('[6] Tenant:', info.tenant, info.status)
+console.log('\n✓ CONNECTED')

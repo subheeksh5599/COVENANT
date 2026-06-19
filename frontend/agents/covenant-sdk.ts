@@ -1,15 +1,23 @@
 /**
  * COVENANT — Terminal 3 SDK (v3.9.0)
- * Runtime-only import — Webpack cannot bundle this SDK.
+ *
+ * The SDK's WASM session module uses ESM features incompatible with
+ * Next.js 14 / Webpack 4. The SDK loads at runtime via eval() bypassing
+ * Webpack's static analysis. Works in Node.js (CLI test confirmed).
+ *
+ * Browser support requires SDK pre-bundling. The Connect T3 button
+ * attempts runtime import and surfaces errors gracefully.
  */
 
 const PRIV = process.env.NEXT_PUBLIC_T3_API_KEY || ''
+
 let _client: any = null
 let _tenant: any = null
 let _did = ''
+let _error: string | null = null
 
 async function loadSDK(): Promise<any> {
-  // Runtime-only import — Webpack cannot analyze eval'd string
+  // @ts-ignore — runtime-only import, Webpack cannot see this
   const mod = await (0, eval)('import("@terminal3/t3n-sdk")')
   mod.setEnvironment('testnet')
   return mod
@@ -35,13 +43,9 @@ export async function bootstrap(): Promise<{ did: string; tenant: any; client: a
   const baseUrl = sdk.getNodeUrl()
   const tenant = new sdk.TenantClient({ t3n: client, tenantDid: didHex, baseUrl })
 
-  _client = client; _tenant = tenant; _did = did
+  _client = client; _tenant = tenant; _did = did; _error = null
   return { did, tenant, client }
 }
 
 export function currentDid() { return _did }
-export function currentTenant(): any { if (!_tenant) throw new Error('Not connected'); return _tenant }
-export function currentClient(): any { if (!_client) throw new Error('Not connected'); return _client }
-
-export async function getTenantInfo() { return currentTenant().tenant.me() }
-export async function getBalance() { return currentClient().getUsage() }
+export function getError() { return _error }

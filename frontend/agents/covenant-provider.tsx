@@ -1,7 +1,7 @@
 'use client'
 
 import React, { createContext, useContext, useState, useCallback } from 'react'
-import { bootstrap, currentDid, currentTenant } from '@/agents/covenant-sdk'
+import { bootstrap } from '@/agents/covenant-sdk'
 
 type State = {
   did: string
