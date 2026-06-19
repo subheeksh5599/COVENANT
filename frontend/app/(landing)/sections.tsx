@@ -27,7 +27,7 @@ const FEATURES = [
 ]
 
 const BUILD_STEPS = [
-  { Icon: Lock, title: 'Seal Your Data Room', color: A, desc: 'Connect wallet, get did:t3n identity, seal sensitive documents into TEE-secured KV maps.', tags: ['did:t3n', 'TEE', 'KV Maps'] },
+  { Icon: Lock, title: 'Seal Documents', color: A, desc: 'Connect wallet, get did:t3n identity. Place sensitive documents into a TEE-secured analysis environment.', tags: ['did:t3n', 'TEE', 'Confidential'] },
   { Icon: Key, title: 'Grant Agent Access', color: IA, desc: 'Sign agent-auth-update grants scoping investor agents. Cryptographic enforcement, not policy.', tags: ['Scoped', 'Time-Bound', 'Revocable'] },
   { Icon: Brain, title: 'Run Confidential Analysis', color: WA, desc: 'Agents execute WASM contracts inside Intel TDX. DCF, ratios, screening. Raw data stays in the enclave.', tags: ['WASM', 'http-placeholders', 'Cross-Contract'] },
   { Icon: Shield, title: 'Issue Verifiable Credentials', color: IA, desc: 'Diligence results as on-chain VCs. Third parties verify diligence without seeing data.', tags: ['On-Chain', 'Auditable', 'Selective Disclosure'] },
@@ -39,7 +39,7 @@ const AGENT_TEMPLATES = [
 ]
 
 const HIW_STEPS: HowItWorksStep[] = [
-  { title: 'Seal Your Data Room', copy: 'Companies connect via wallet, get did:t3n identity, and seal sensitive documents into TEE-secured KV maps. Intel TDX guarantees data never leaves the enclave.', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&q=80', icon: Lock },
+  { title: 'Seal Documents', copy: 'Companies connect via wallet, get did:t3n identity, and place sensitive documents into a TEE-secured analysis environment. Intel TDX guarantees data never leaves the enclave.', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&q=80', icon: Lock },
   { title: 'Grant Scoped Access', copy: 'Sign agent-auth-update grants. Scope investor agents to specific contracts, functions, and time windows. Cryptographic enforcement.', image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&q=80', icon: Key },
   { title: 'Analyze in TEE', copy: 'Investor agents execute WASM contracts inside Intel TDX. All computation inside the enclave. Raw data never enters model context.', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80', icon: Brain },
   { title: 'Attest On-Chain', copy: 'Diligence results become on-chain Verifiable Credentials. Third parties verify completion without seeing data. 47 audit events per deal.', image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=900&q=80', icon: Shield },
@@ -120,7 +120,7 @@ export default function LandingSections() {
               <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.5 }}
                 className="mt-10 flex flex-wrap gap-2 items-center">
                 <Link href="/company/upload"><motion.button whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
-                  className="flex items-center gap-2 px-5 py-2.5 text-xs font-bold" style={{ background: A, color: '#000' }}><Lock className="w-3 h-3"/>Seal Your Data Room</motion.button></Link>
+                  className="flex items-center gap-2 px-5 py-2.5 text-xs font-bold" style={{ background: A, color: '#000' }}><Lock className="w-3 h-3"/>Start Due Diligence</motion.button></Link>
                 {AGENT_TEMPLATES.map(t => (
                   <button key={t.label} type="button" className="flex items-center gap-1.5 px-3 py-2 text-xs transition-all duration-200"
                     style={{ background: 'rgba(255,255,255,0.02)', color: 'rgba(255,255,255,0.28)', border: '1px solid rgba(255,255,255,0.05)' }}
@@ -160,7 +160,7 @@ export default function LandingSections() {
 
       {/* HOW IT WORKS */}
       <HowItWorks6 steps={HIW_STEPS} color={A} label="How It Works" title="Seal. Analyze. Attest. On-chain."
-        subtitle="From TEE-sealed data rooms to cryptographic agent grants, confidential WASM analysis, and verifiable on-chain credentials." />
+        subtitle="From sealed documents to cryptographic analyst access, confidential WASM computation, and verifiable on-chain results." />
 
       {/* FEATURES */}
       <section className="relative py-28 px-6 sm:px-8 overflow-hidden">
@@ -240,11 +240,11 @@ export default function LandingSections() {
           <div className="relative z-10 px-8 py-14 sm:px-12">
             <div className="max-w-xl">
               <div className="flex items-center gap-2 mb-5"><Kvark size={20}/><span className="text-[10px] tracking-[0.35em] uppercase font-bold" style={{ color: 'rgba(255,255,255,0.35)' }}>COVENANT . Terminal 3</span></div>
-              <StaggeredText text="Your data room. Your agents. All confidential." as="h2" segmentBy="words" delay={70} duration={0.65} direction="bottom" blur className="text-3xl font-bold tracking-tight sm:text-4xl mb-3 text-white/90" />
+              <StaggeredText text="Your documents. Your analysis. All confidential." as="h2" segmentBy="words" delay={70} duration={0.65} direction="bottom" blur className="text-3xl font-bold tracking-tight sm:text-4xl mb-3 text-white/90" />
               <p className="text-base mt-4 mb-8" style={{ color: 'rgba(255,255,255,0.28)' }}>Built for the Terminal 3 Agent Dev Kit Bounty Challenge. 6 WASM contracts. 12 SDK integrations. Zero data leaks. Submit by 22 June 2026.</p>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Link href="/company/upload"><motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}
-                  className="flex items-center gap-2 h-12 px-8 text-sm font-bold tracking-wide" style={{ background: A, color: '#000' }}><Lock className="w-4 h-4"/>Seal Your Data Room</motion.button></Link>
+                  className="flex items-center gap-2 h-12 px-8 text-sm font-bold tracking-wide" style={{ background: A, color: '#000' }}><Lock className="w-4 h-4"/>Start Due Diligence</motion.button></Link>
                 <a href="https://terminal3.io" target="_blank" rel="noopener noreferrer"><motion.button whileHover={{ scale: 1.02 }}
                   className="flex items-center gap-2 h-12 px-8 text-sm font-medium transition-colors"
                   style={{ background: 'rgba(255,255,255,0.04)', color: 'rgba(255,255,255,0.4)', border: '1px solid rgba(255,255,255,0.07)' }}

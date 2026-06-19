@@ -5,8 +5,8 @@ import ExtensionErrorSuppressor from '@/components/extension-error-suppressor'
 import { CovenantProvider } from '@/agents/covenant-provider'
 
 export const metadata: Metadata = {
-  title: 'COVENANT — Confidential Multi-Agent Due Diligence',
-  description: 'TEE-secured data rooms where AI agents with verifiable identity analyze sensitive corporate documents without raw data ever leaving the enclave.',
+  title: 'COVENANT — Confidential AI Due Diligence',
+  description: 'Let investors run AI-powered financial analysis on private company documents without exposing those documents to the investor, the AI model, or any third party.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

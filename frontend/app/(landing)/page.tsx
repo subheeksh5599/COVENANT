@@ -73,11 +73,11 @@ export default function LandingPage() {
           </motion.h1>
           <motion.p className="text-sm sm:text-base font-light leading-relaxed mb-6" style={{ color: 'rgba(255,255,255,0.5)', maxWidth: '52ch' }}
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.17 }}>
-            AI agents performing confidential due diligence inside hardware-secured TEEs. Company data stays sealed. Investor agents get analysis. Everyone gets cryptographic proof. Trust is enforced by Intel TDX, W3C verifiable credentials, and an immutable audit ledger. No data leaks. No NDAs needed. No excuses.
+            Run AI due diligence on private company documents — without the AI model ever seeing the raw data. Valuation, compliance, risk analysis. All computed inside hardware-secured TEEs. The agent orchestrates. The enclave protects. You get the report, not the exposure.
           </motion.p>
           <motion.div className="flex flex-wrap items-center gap-4 mb-8" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.28 }}>
-            <Press3DButton href="/company/upload" color={A} shadowColor="#888"><Lock size={14} strokeWidth={2.5} />Enter Data Room</Press3DButton>
-            <Press3DButton href="/investor/analysis" color="rgba(255,255,255,0.05)" shadowColor="rgba(0,0,0,0.45)" textColor="rgba(255,255,255,0.7)" border="1px solid rgba(255,255,255,0.1)"><Search size={14} strokeWidth={2} />Run Analysis</Press3DButton>
+            <Press3DButton href="/company/upload" color={A} shadowColor="#888"><Lock size={14} strokeWidth={2.5} />Start Due Diligence</Press3DButton>
+            <Press3DButton href="/investor/analysis" color="rgba(255,255,255,0.05)" shadowColor="rgba(0,0,0,0.45)" textColor="rgba(255,255,255,0.7)" border="1px solid rgba(255,255,255,0.1)"><Search size={14} strokeWidth={2} />View Analysis</Press3DButton>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.35 }}
             className="pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}><LiveStatsBar /></motion.div>

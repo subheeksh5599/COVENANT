@@ -1,33 +1,37 @@
 # COVENANT
 
-> **Let investors run AI due diligence on confidential company documents — without exposing those documents to the investor, the AI model, or any third party.**
+> **Confidential AI due diligence.** Let investors run AI-powered financial analysis on private company documents without exposing those documents to the investor, the AI model, or any third party.
 
 ---
 
-## Why This Can't Be Done With ChatGPT and Dropbox
+## What This Replaces
 
 ```
-Traditional Due Diligence                    COVENANT
-───────────────────────────                  ──────────────────────────
+Traditional AI Due Diligence                     COVENANT
+──────────────────────────────────              ────────────────────────────────
 
-  Company ──► Share documents ──► Investor     Company ──► TEE ──► Analysis ──► Report
-                │                                                    │
-                ▼                                                    ▼
-          Full PII exposure                                   Zero exposure
-          Model sees everything                               Agent never sees raw data
-          Trust = NDA                                         Trust = cryptography
+  Company ──► Upload P&L ──► AI Model             Company ──► TEE ──► Analysis ──► Report
+              Upload cap table                        │
+              Upload contracts                         │
+                │                                      ▼
+                ▼                              Agent orchestrates, never sees raw data
+          Model sees everything                Trust = cryptography
+          PII in context window
+          Trust = NDA
 ```
 
-With traditional tools, the AI model sees everything. Every cell in the cap table. Every line in the P&L. With Covenant, raw data enters a hardware-secured Intel TDX enclave — processed there, analyzed there, and sealed back. The agent only receives computed results: a valuation, a compliance score, a recommendation. Never the underlying data.
+Every startup fundraising round, every M&A deal, every vendor security assessment requires sharing sensitive documents with counterparties. Today, that means PDFs over email and NDAs for trust. If you want AI to analyze those documents, the model sees everything — every cell of the cap table, every line of the P&L, every customer name in every contract.
+
+Covenant runs the analysis inside hardware-secured enclaves. The AI agent orchestrates the workflow — calling valuation models, compliance APIs, risk screens — but raw data never enters its context window. The agent receives computed results: a valuation, a compliance score, a recommendation. Never the underlying documents.
 
 ---
 
-## How It Works
+## The Due Diligence Workflow
 
-**Seal** → Company uploads documents into a TEE-secured data room.  
-**Grant** → Scoped, time-bound access granted to investor agent via cryptographic signature.  
-**Analyze** → Investor agent runs analysis contracts inside the TEE. PII resolved at the enclave boundary.  
-**Attest** → Results issued as on-chain verifiable credentials. Third parties verify without seeing data.
+**Seal** → Company places documents into a TEE-secured analysis environment.  
+**Grant** → Scoped, time-bound analyst access granted via cryptographic signature.  
+**Analyze** → Agent runs valuation, compliance, and risk contracts inside the TEE. PII resolved at the enclave boundary.  
+**Attest** → Results issued as on-chain verifiable credentials. Third parties verify without seeing source data.
 
 ---
 
@@ -42,8 +46,8 @@ Investor ── did:t3n ──►  ┌────────────┐  �
                     │    │ 6 WASM     │  │──► Market data APIs
 Auditor ─── did:t3n ──►  │ contracts  │  │    (PII resolved at call time)
                     │    └────────────┘  │
-                    │  KV-STORE (sealed)  │
-                    │  AUDIT LEDGER       │
+                    │  Sealed documents   │
+                    │  Audit ledger       │
                     └────────────────────┘
 ```
 
@@ -53,19 +57,19 @@ Auditor ─── did:t3n ──►  │ contracts  │  │    (PII resolved at
 
 All 12 Agent Dev Kit features in production:
 
-| Feature | Role |
-|---------|------|
-| `did:t3n` identity | Every company, investor, and auditor gets verifiable W3C identity |
+| Feature | Role in the workflow |
+|---------|---------------------|
+| `did:t3n` identity | Every company, investor, and auditor has verifiable W3C identity |
 | SIWE auth | Wallet-based handshake and authentication |
 | KV-store | Documents sealed with cryptographic ACL |
 | `http-with-placeholders` | PII resolved at TEE boundary — raw data never touches WASM |
 | WASM TEE contracts | 6 Rust contracts compiled to `wasm32-wasip2` |
-| Cross-contract calls | Multi-step due diligence pipeline |
-| EIP-191 signing | Cryptographic sign-off on investment memos |
+| Cross-contract calls | Multi-step analysis pipeline |
+| EIP-191 signing | Cryptographic sign-off on due diligence reports |
 | Verifiable Credentials | On-chain "Due Diligence Verified" credential |
 | Audit ledger | Merkle-backed, independently verifiable |
 | `agent-auth-update` | Scoped, time-bound, revocable access grants |
-| Stripe payments | Payment for premium analysis reports |
+| Stripe payments | Payment for premium analysis |
 | Tenant management | Full identity lifecycle |
 
 ---
@@ -76,10 +80,10 @@ All 12 Agent Dev Kit features in production:
 
 | Contract | Purpose |
 |----------|---------|
-| `access-control` | Grant, validate, revoke agent access |
+| `access-control` | Grant, validate, revoke analyst access |
 | `financial-analysis` | DCF valuation, ratio analysis, anomaly detection |
 | `compliance` | OFAC/sanctions screening, accreditation |
-| `memo-generator` | Cross-contract memo + EIP-191 signing |
+| `memo-generator` | Cross-contract report + EIP-191 signing |
 | `credential-issuer` | W3C Verifiable Credential issuance |
 | `payments` | Stripe test-mode payment processing |
 
