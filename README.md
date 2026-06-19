@@ -1,37 +1,35 @@
 # COVENANT
 
-> **Confidential AI due diligence.** Let investors run AI-powered financial analysis on private company documents without exposing those documents to the investor, the AI model, or any third party.
+> **A company can let investors run AI due diligence on confidential documents — without exposing those documents to the investor or the AI.**
 
 ---
 
 ## What This Replaces
 
 ```
-Traditional AI Due Diligence                     COVENANT
-──────────────────────────────────              ────────────────────────────────
+Traditional AI Analysis                         COVENANT
+──────────────────────────                     ────────────────────────────────
 
-  Company ──► Upload P&L ──► AI Model             Company ──► TEE ──► Analysis ──► Report
-              Upload cap table                        │
-              Upload contracts                         │
-                │                                      ▼
-                ▼                              Agent orchestrates, never sees raw data
-          Model sees everything                Trust = cryptography
-          PII in context window
-          Trust = NDA
+  Company ──► Upload docs ──► AI Model           Company ──► TEE ──► Analysis ──► Report
+                │                                              │
+                ▼                                              ▼
+          Model sees everything                    Agent orchestrates, never sees raw data
+          Sensitive data in context window         Trust = cryptography
+          Trust = legal agreements
 ```
 
-Every startup fundraising round, every M&A deal, every vendor security assessment requires sharing sensitive documents with counterparties. Today, that means PDFs over email and NDAs for trust. If you want AI to analyze those documents, the model sees everything — every cell of the cap table, every line of the P&L, every customer name in every contract.
+When you share sensitive documents and ask AI to analyze them, the model sees everything. Names, numbers, contracts — all of it enters the context window. You trust the AI provider not to train on it, not to leak it, not to retain it. That trust breaks all the time.
 
-Covenant runs the analysis inside hardware-secured enclaves. The AI agent orchestrates the workflow — calling valuation models, compliance APIs, risk screens — but raw data never enters its context window. The agent receives computed results: a valuation, a compliance score, a recommendation. Never the underlying documents.
+Covenant runs the analysis inside hardware-secured enclaves. The agent orchestrates the workflow — calling analysis models, compliance checks, risk screens — but raw data never enters its context window. The agent receives results. Never the source documents.
 
 ---
 
-## The Due Diligence Workflow
+## How It Works
 
 **Seal** → Company places documents into a TEE-secured analysis environment.  
 **Grant** → Scoped, time-bound analyst access granted via cryptographic signature.  
-**Analyze** → Agent runs valuation, compliance, and risk contracts inside the TEE. PII resolved at the enclave boundary.  
-**Attest** → Results issued as on-chain verifiable credentials. Third parties verify without seeing source data.
+**Analyze** → Agent runs analysis inside the TEE. Sensitive fields resolved at the enclave boundary.  
+**Attest** → Results issued as verifiable credentials. Third parties verify without seeing source data.
 
 ---
 
@@ -81,8 +79,8 @@ All 12 Agent Dev Kit features in production:
 | Contract | Purpose |
 |----------|---------|
 | `access-control` | Grant, validate, revoke analyst access |
-| `financial-analysis` | DCF valuation, ratio analysis, anomaly detection |
-| `compliance` | OFAC/sanctions screening, accreditation |
+| `financial-analysis` | Valuation, ratio analysis, anomaly detection |
+| `compliance` | Sanctions screening, accreditation |
 | `memo-generator` | Cross-contract report + EIP-191 signing |
 | `credential-issuer` | W3C Verifiable Credential issuance |
 | `payments` | Stripe test-mode payment processing |

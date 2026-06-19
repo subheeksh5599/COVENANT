@@ -73,7 +73,7 @@ export default function LandingPage() {
           </motion.h1>
           <motion.p className="text-sm sm:text-base font-light leading-relaxed mb-6" style={{ color: 'rgba(255,255,255,0.5)', maxWidth: '52ch' }}
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.17 }}>
-            Run AI due diligence on private company documents — without the AI model ever seeing the raw data. Valuation, compliance, risk analysis. All computed inside hardware-secured TEEs. The agent orchestrates. The enclave protects. You get the report, not the exposure.
+            A company can let investors run AI due diligence on confidential documents — without exposing those documents to the investor or the AI. All analysis runs inside hardware-secured enclaves. The agent orchestrates. The enclave protects. You get the results, not the exposure.
           </motion.p>
           <motion.div className="flex flex-wrap items-center gap-4 mb-8" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.28 }}>
             <Press3DButton href="/company/upload" color={A} shadowColor="#888"><Lock size={14} strokeWidth={2.5} />Start Due Diligence</Press3DButton>
