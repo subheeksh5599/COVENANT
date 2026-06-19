@@ -1,0 +1,35 @@
+package covenant:access-control@1.0.0;
+
+world access-control {
+  import host:interfaces/logging@2.1.0;
+  import host:interfaces/kv-store@2.1.0;
+  import host:interfaces/signing@2.1.0;
+  import host:interfaces/time@2.1.0;
+
+  export contracts;
+}
+
+interface contracts {
+  record access-grant {
+    grantee-did: string,
+    document-map: string,
+    functions: list<string>,
+    allowed-hosts: list<string>,
+    expires-at: u64,
+    max-calls: u32,
+    call-count: u32,
+    revoked: bool,
+  }
+
+  record grant-input {
+    input: option<list<u8>>,
+    user-profile: option<list<u8>>,
+    context: option<list<u8>>,
+  }
+
+  grant-access: func(req: grant-input) -> result<list<u8>, string>;
+  revoke-access: func(req: grant-input) -> result<list<u8>, string>;
+  validate-access: func(req: grant-input) -> result<list<u8>, string>;
+  list-grants: func(req: grant-input) -> result<list<u8>, string>;
+  verify-signature: func(req: grant-input) -> result<list<u8>, string>;
+}

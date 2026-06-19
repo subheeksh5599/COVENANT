@@ -1,0 +1,21 @@
+package covenant:payments@1.0.0;
+
+world payments {
+  import host:interfaces/logging@2.1.0;
+  import host:interfaces/http-with-placeholders@2.1.0;
+  import host:interfaces/kv-store@2.1.0;
+
+  export contracts;
+}
+
+interface contracts {
+  record generic-input {
+    input: option<list<u8>>,
+    user-profile: option<list<u8>>,
+    context: option<list<u8>>,
+  }
+
+  process-payment: func(req: generic-input) -> result<list<u8>, string>;
+  get-payment-status: func(req: generic-input) -> result<list<u8>, string>;
+  refund-payment: func(req: generic-input) -> result<list<u8>, string>;
+}

@@ -1,0 +1,10 @@
+[workspace]
+members = [
+  "contracts/access-control",
+  "contracts/financial-analysis",
+  "contracts/compliance",
+  "contracts/memo-generator",
+  "contracts/credential-issuer",
+  "contracts/payments",
+]
+resolver = "2"

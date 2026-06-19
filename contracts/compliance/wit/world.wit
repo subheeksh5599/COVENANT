@@ -1,0 +1,23 @@
+package covenant:compliance@1.0.0;
+
+world compliance {
+  import host:interfaces/logging@2.1.0;
+  import host:interfaces/kv-store@2.1.0;
+  import host:interfaces/http-with-placeholders@2.1.0;
+  import host:interfaces/time@2.1.0;
+
+  export contracts;
+}
+
+interface contracts {
+  record generic-input {
+    input: option<list<u8>>,
+    user-profile: option<list<u8>>,
+    context: option<list<u8>>,
+  }
+
+  sanctions-check: func(req: generic-input) -> result<list<u8>, string>;
+  verify-accreditation: func(req: generic-input) -> result<list<u8>, string>;
+  pep-screening: func(req: generic-input) -> result<list<u8>, string>;
+  adverse-media: func(req: generic-input) -> result<list<u8>, string>;
+}

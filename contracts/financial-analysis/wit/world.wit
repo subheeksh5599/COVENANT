@@ -1,0 +1,25 @@
+package covenant:financial-analysis@1.0.0;
+
+world financial-analysis {
+  import host:interfaces/logging@2.1.0;
+  import host:interfaces/kv-store@2.1.0;
+  import host:interfaces/http@2.1.0;
+  import host:interfaces/http-with-placeholders@2.1.0;
+  import host:interfaces/time@2.1.0;
+
+  export contracts;
+}
+
+interface contracts {
+  record generic-input {
+    input: option<list<u8>>,
+    user-profile: option<list<u8>>,
+    context: option<list<u8>>,
+  }
+
+  dcf-valuation: func(req: generic-input) -> result<list<u8>, string>;
+  ratio-analysis: func(req: generic-input) -> result<list<u8>, string>;
+  burn-rate-calc: func(req: generic-input) -> result<list<u8>, string>;
+  anomaly-detect: func(req: generic-input) -> result<list<u8>, string>;
+  industry-comparables: func(req: generic-input) -> result<list<u8>, string>;
+}

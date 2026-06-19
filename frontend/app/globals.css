@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cv-bg:             #000000;
+  --cv-surface:        #080808;
+  --cv-surface-2:      #0f0f0f;
+  --cv-surface-3:      #181818;
+  --cv-border:         #1a1a1a;
+  --cv-border-dim:     #111111;
+  --cv-text:           #fafafa;
+  --cv-text-dim:       #666666;
+  --cv-text-mid:       #999999;
+  --cv-accent:         #ffffff;
+  --cv-accent-dim:     #cccccc;
+  --cv-danger:         #ff4444;
+  --cv-warning:        #888888;
+  --cv-info:           #aaaaaa;
+  --topbar-height:     56px;
+  --sidebar-width:     220px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--cv-bg);
+  color: var(--cv-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-mono, code, kbd { font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #2a2a2a; }
+
+/* ── Animations ─────────────────────────────────────────────────────────── */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1;   }
+}
+@keyframes scan-line {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0);     }
+}
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0;  }
+}
+
+.animate-pulse-glow   { animation: pulse-glow 2s ease-in-out infinite; }
+.animate-fade-in-up   { animation: fade-in-up 0.45s ease-out forwards; }
+.animate-slide-in-left{ animation: slide-in-left 0.35s ease-out forwards; }
+
+/* ── Cards ──────────────────────────────────────────────────────────────── */
+.cv-card {
+  border-radius: 0px;
+  border: 1px solid var(--cv-border);
+  padding: 1.5rem;
+  background: var(--cv-surface);
+}
+
+.cv-card-hover {
+  border-radius: 0px;
+  border: 1px solid var(--cv-border);
+  padding: 1.5rem;
+  background: var(--cv-surface);
+  transition: all 200ms;
+}
+.cv-card-hover:hover {
+  border-color: rgba(255,255,255,0.25);
+  box-shadow: 0 0 28px rgba(255,255,255,0.02);
+}
+
+/* ── Skeleton ───────────────────────────────────────────────────────────── */
+.cv-skeleton {
+  border-radius: 0px;
+  background: linear-gradient(90deg, var(--cv-surface) 25%, var(--cv-surface-2) 50%, var(--cv-surface) 75%);
+  background-size: 400px 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+/* ── Badges ─────────────────────────────────────────────────────────────── */
+.cv-badge { display: inline-flex; align-items: center; border-radius: 0px; padding: 2px 8px; font-size: 0.625rem; font-weight: 500; }
+.cv-badge-critical { background: rgba(255,68,68,0.12); color: var(--cv-danger); border: 1px solid rgba(255,68,68,0.25); }
+.cv-badge-high     { background: rgba(255,255,255,0.06); color: var(--cv-text-mid); border: 1px solid rgba(255,255,255,0.12); }
+.cv-badge-medium   { background: rgba(170,170,170,0.10); color: var(--cv-info); border: 1px solid rgba(170,170,170,0.15); }
+.cv-badge-low      { background: rgba(255,255,255,0.05); color: var(--cv-text-mid); border: 1px solid rgba(255,255,255,0.08); }
+
+/* ── Grid overlay ───────────────────────────────────────────────────────── */
+.cv-grid-overlay {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ── Glow button ────────────────────────────────────────────────────────── */
+.cv-btn-primary {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.625rem 1.5rem; border-radius: 0px;
+  font-size: 0.75rem; font-weight: 700;
+  background: var(--cv-accent);
+  color: #000;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 150ms;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.cv-btn-primary:hover {
+  background: var(--cv-accent-dim);
+  box-shadow: 0 0 20px rgba(255,255,255,0.15);
+}
+
+.cv-btn-outline {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.625rem 1.5rem; border-radius: 0px;
+  font-size: 0.75rem; font-weight: 500;
+  border: 1px solid var(--cv-border);
+  color: var(--cv-text-mid);
+  transition: all 150ms;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  background: transparent;
+}
+.cv-btn-outline:hover {
+  border-color: rgba(255,255,255,0.2);
+  color: var(--cv-text);
+}
+
+/* ── Input ──────────────────────────────────────────────────────────────── */
+.cv-input {
+  width: 100%; padding: 0.5rem 0.75rem; border-radius: 0px;
+  font-size: 0.75rem; transition: all 150ms; outline: none;
+  background: var(--cv-surface-2);
+  border: 1px solid var(--cv-border);
+  color: var(--cv-text);
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+.cv-input:focus {
+  border-color: rgba(255,255,255,0.25);
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.03);
+}
+.cv-input::placeholder { color: var(--cv-text-dim); }
+
+/* ── Terminal Output ────────────────────────────────────────────────────── */
+.cv-terminal {
+  background: var(--cv-surface);
+  border: 1px solid var(--cv-border);
+  border-radius: 0px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.6875rem;
+  line-height: 1.8;
+  color: var(--cv-text-mid);
+  padding: 1.25rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+.cv-terminal .ok { color: #666666; }
+.cv-terminal .err { color: var(--cv-danger); }
+.cv-terminal .dim { color: #333333; }
+.cv-terminal .hdr { color: var(--cv-text); }
