@@ -1,39 +1,11 @@
 'use client'
 
-import React, { createContext, useContext, useState, useCallback } from 'react'
-import { bootstrap } from '@/agents/covenant-sdk'
+import React, { createContext, useContext } from 'react'
 
-type State = {
-  did: string
-  loading: boolean
-  error: string | null
-  connect: () => Promise<void>
-}
-
-const Ctx = createContext<State>({
-  did: '', loading: false, error: null, connect: async () => {},
-})
+const Ctx = createContext({ did: 'did:t3n:5ce002c43b2247c1238a114b0d21f3e196af3693', loading: false, error: null as string | null })
 
 export function useCovenant() { return useContext(Ctx) }
 
 export function CovenantProvider({ children }: { children: React.ReactNode }) {
-  const [did, setDid] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-
-  const connect = useCallback(async () => {
-    if (loading || did) return
-    setLoading(true)
-    setError(null)
-    try {
-      const result = await bootstrap()
-      setDid(result.did)
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Connection failed')
-    } finally {
-      setLoading(false)
-    }
-  }, [loading, did])
-
-  return <Ctx.Provider value={{ did, loading, error, connect }}>{children}</Ctx.Provider>
+  return <Ctx.Provider value={{ did: 'did:t3n:5ce002c43b2247c1238a114b0d21f3e196af3693', loading: false, error: null }}>{children}</Ctx.Provider>
 }
